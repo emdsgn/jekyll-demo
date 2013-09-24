@@ -1,16 +1,24 @@
-<!DOCTYPE html>
-<html lang=en-ca>
-<head>
-  <meta charset=utf-8>
-  <title>Moons of Jupiter</title>
-  <link href="css/general.css" rel="stylesheet">
-  <meta name="handheldfriendly" content="true">
-  <meta name="mobileoptimized" content="240">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-</head>
-<body>
+---
+layout: default
+---
 
-  <h1>Moons of Jupiter</h1>
+<h1>Moons of Jupiter</h1>
+<p>Jupiter has lots and lots of moons.</p>
 
-</body>
-</html>
+<h2>List of Large Jovian Moons</h2>
+
+<ul class="moons">
+  {% for moon in site.pages %}
+    {% if moon.category == "moon" %}
+  <li class="moon">
+    <img src="img/{{moon.image}}" alt="">
+    <strong>{{moon.name}}</strong>
+    <dl>
+      <dt>Discovered by:</dt> <dd>{{moon.discoverer}}</dd>
+      <dt>Discovered on:</dt> <dd>{{moon.date}}</dd>
+    </dl>
+    {{moon.content | markdownify}}
+  </li>
+    {% endif %}
+  {% endfor %}
+</ul>
